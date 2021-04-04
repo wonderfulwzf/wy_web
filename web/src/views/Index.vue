@@ -4,6 +4,7 @@
    <div class="container">
     <h1>往忆视频</h1>
     <p class="lead text-muted">记录一些值得回味的视频，供大家欣赏！</p>
+    <p class="lead text-muted">create by:王智芳</p>
     <p>
      <router-link to="/list" class="btn btn-primary my-2">开启视频之旅</router-link>
      &nbsp;&nbsp;

@@ -5,7 +5,7 @@
     <h1>往忆视频</h1>
     <p class="lead text-muted">记录一些值得回味的视频，供大家欣赏！</p>
     <p>
-     <a href="#" class="btn btn-primary my-2">开启视频之旅</a>
+     <router-link to="/list" class="btn btn-primary my-2">开启视频之旅</router-link>
      &nbsp;&nbsp;
      <a href="#" class="btn btn-primary my-2">你可能喜欢的</a>
     </p>
@@ -22,20 +22,29 @@
 
      <div class="col-md-4">
       <div class="card mb-4 shadow-sm">
-       <svg
-        class="bd-placeholder-img card-img-top"
-        width="100%"
-        height="225"
-        xmlns="http://www.w3.org/2000/svg"
-        role="img"
-        aria-label="Placeholder: Thumbnail"
-        preserveAspectRatio="xMidYMid slice"
-        focusable="false"
-       >
-        <title>Placeholder</title>
-        <rect width="100%" height="100%" fill="#55595c" />
-        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-       </svg>
+        <img class="img-fluid" src="/static/image/dl.jpg">
+       <div class="card-body">
+        <p class="card-text">
+         This is a wider card with supporting text below as a natural lead-in to
+         additional content. This content is a little bit longer.
+        </p>
+        <div class="d-flex justify-content-between align-items-center">
+         <div class="btn-group">
+          <button type="button" class="btn btn-sm btn-outline-secondary">
+           View
+          </button>
+          <button type="button" class="btn btn-sm btn-outline-secondary">
+           Edit
+          </button>
+         </div>
+         <small class="text-muted">9 mins</small>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+       <img class="img-fluid" src="/static/image/dl.jpg">
 
        <div class="card-body">
         <p class="card-text">
@@ -58,56 +67,7 @@
      </div>
      <div class="col-md-4">
       <div class="card mb-4 shadow-sm">
-       <svg
-        class="bd-placeholder-img card-img-top"
-        width="100%"
-        height="225"
-        xmlns="http://www.w3.org/2000/svg"
-        role="img"
-        aria-label="Placeholder: Thumbnail"
-        preserveAspectRatio="xMidYMid slice"
-        focusable="false"
-       >
-        <title>Placeholder</title>
-        <rect width="100%" height="100%" fill="#55595c" />
-        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-       </svg>
-
-       <div class="card-body">
-        <p class="card-text">
-         This is a wider card with supporting text below as a natural lead-in to
-         additional content. This content is a little bit longer.
-        </p>
-        <div class="d-flex justify-content-between align-items-center">
-         <div class="btn-group">
-          <button type="button" class="btn btn-sm btn-outline-secondary">
-           View
-          </button>
-          <button type="button" class="btn btn-sm btn-outline-secondary">
-           Edit
-          </button>
-         </div>
-         <small class="text-muted">9 mins</small>
-        </div>
-       </div>
-      </div>
-     </div>
-     <div class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-       <svg
-        class="bd-placeholder-img card-img-top"
-        width="100%"
-        height="225"
-        xmlns="http://www.w3.org/2000/svg"
-        role="img"
-        aria-label="Placeholder: Thumbnail"
-        preserveAspectRatio="xMidYMid slice"
-        focusable="false"
-       >
-        <title>Placeholder</title>
-        <rect width="100%" height="100%" fill="#55595c" />
-        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-       </svg>
+        <img class="img-fluid" src="/static/image/dl.jpg">
 
        <div class="card-body">
         <p class="card-text">
@@ -131,20 +91,7 @@
 
      <div class="col-md-4">
       <div class="card mb-4 shadow-sm">
-       <svg
-        class="bd-placeholder-img card-img-top"
-        width="100%"
-        height="225"
-        xmlns="http://www.w3.org/2000/svg"
-        role="img"
-        aria-label="Placeholder: Thumbnail"
-        preserveAspectRatio="xMidYMid slice"
-        focusable="false"
-       >
-        <title>Placeholder</title>
-        <rect width="100%" height="100%" fill="#55595c" />
-        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-       </svg>
+        <img class="img-fluid" src="/static/image/dl.jpg">
 
        <div class="card-body">
         <p class="card-text">
@@ -167,21 +114,8 @@
      </div>
      <div class="col-md-4">
       <div class="card mb-4 shadow-sm">
-       <svg
-        class="bd-placeholder-img card-img-top"
-        width="100%"
-        height="225"
-        xmlns="http://www.w3.org/2000/svg"
-        role="img"
-        aria-label="Placeholder: Thumbnail"
-        preserveAspectRatio="xMidYMid slice"
-        focusable="false"
-       >
-        <title>Placeholder</title>
-        <rect width="100%" height="100%" fill="#55595c" />
-        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-       </svg>
-
+       
+       <img class="img-fluid" src="/static/image/dl.jpg">
        <div class="card-body">
         <p class="card-text">
          This is a wider card with supporting text below as a natural lead-in to
@@ -203,21 +137,7 @@
      </div>
      <div class="col-md-4">
       <div class="card mb-4 shadow-sm">
-       <svg
-        class="bd-placeholder-img card-img-top"
-        width="100%"
-        height="225"
-        xmlns="http://www.w3.org/2000/svg"
-        role="img"
-        aria-label="Placeholder: Thumbnail"
-        preserveAspectRatio="xMidYMid slice"
-        focusable="false"
-       >
-        <title>Placeholder</title>
-        <rect width="100%" height="100%" fill="#55595c" />
-        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-       </svg>
-
+        <img class="img-fluid" src="/static/image/dl.jpg">
        <div class="card-body">
         <p class="card-text">
          This is a wider card with supporting text below as a natural lead-in to

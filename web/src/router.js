@@ -1,6 +1,7 @@
 import Vue from "vue"
 import Router from "vue-router"
 import Index from "./views/Index.vue"
+import List from "./views/List.vue"
 
 Vue.use(Router);
 
@@ -13,5 +14,8 @@ export default new Router({
     },{
         path:"/index",
         component:Index, 
+    },{
+        path:"/list",
+        component:List, 
     }]
 })

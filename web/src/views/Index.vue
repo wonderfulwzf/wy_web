@@ -14,26 +14,10 @@
 
   <div class="album py-5 bg-light">
    <div class="container">
+    <div class="title1">当前最热</div>
     <div class="row">
      <div class="col-md-4" v-for="o in news" v-bind:key="o.id">
-      <div class="card mb-4 shadow-sm">
-       <img class="img-fluid" v-bind:src="o.image" />
-       <div class="card-body">
-        <h4>{{ o.name }}</h4>
-        <p class="card-text">{{ o.sunmary }}</p>
-        <div class="d-flex justify-content-between align-items-center">
-         <div class="btn-group">
-          <button type="button" class="btn btn-sm btn-outline-secondary">
-           View
-          </button>
-          <button type="button" class="btn btn-sm btn-outline-secondary">
-           Edit
-          </button>
-         </div>
-         <small class="text-muted">9 mins</small>
-        </div>
-       </div>
-      </div>
+      <TheCourse v-bind:course="o"></TheCourse>
      </div>
 
      <div class="col-md-4">
@@ -260,8 +244,10 @@
 </template>
 
 <script>
+import TheCourse from "../components/TheCourse";
 export default {
  name: "index",
+ components: { TheCourse },
  data: function () {
   return {
    news: [],
@@ -281,10 +267,10 @@ export default {
    // 新上好课不经常变，又经常被访问，适合用缓存
    // 判断是否有缓存
    //let news = SessionStorage.get("news");
-  //  if (!Tool.isEmpty(news)) {
-  //   _this.news = news;
-  //   return;
-  //  }
+   //  if (!Tool.isEmpty(news)) {
+   //   _this.news = news;
+   //   return;
+   //  }
 
    _this.$ajax
     .get(process.env.VUE_APP_SERVER + "/business/web/course/list_new")
@@ -294,7 +280,7 @@ export default {
      if (resp.success) {
       _this.news = resp.data;
       // 保存到缓存
-     // SessionStorage.set("news", _this.news);
+      // SessionStorage.set("news", _this.news);
      }
     })
     .catch((response) => {
@@ -308,7 +294,7 @@ export default {
 <style>
 .title1 {
  margin-bottom: 2rem;
- color: #fafafa;
+ color: #ff5c38;
  letter-spacing: 0;
  text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777,
   0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333,

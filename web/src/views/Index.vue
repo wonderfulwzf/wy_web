@@ -2,15 +2,14 @@
  <main role="main">
    <section class="jumbotron text-center">
     <div class="container">
-     <h1>Album example</h1>
+     <h1>往忆视频</h1>
      <p class="lead text-muted">
-      Something short and leading about the collection below—its contents, the
-      creator, etc. Make it short and sweet, but not too short so folks don’t
-      simply skip over it entirely.
+      记录一些值得回味的视频，供大家欣赏！
      </p>
      <p>
-      <a href="#" class="btn btn-primary my-2">Main call to action</a>
-      <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+      <a href="#" class="btn btn-primary my-2">开启视频之旅</a>
+      &nbsp;&nbsp;
+      <a href="#" class="btn btn-primary my-2">你可能喜欢的</a>
      </p>
     </div>
    </section>

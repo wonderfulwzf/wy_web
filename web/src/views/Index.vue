@@ -17,146 +17,9 @@
    <div class="container">
     <div class="title1">当前最热</div>
     <div class="row">
-     <div class="col-md-4" v-for="o in news" v-bind:key="o.id">
-       <the-video v-bind:course="o"></the-video>
-     </div>
-
-     <div class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-        <img class="img-fluid" src="/static/image/dl.jpg">
-       <div class="card-body">
-        <p class="card-text">
-         This is a wider card with supporting text below as a natural lead-in to
-         additional content. This content is a little bit longer.
-        </p>
-        <div class="d-flex justify-content-between align-items-center">
-         <div class="btn-group">
-          <button type="button" class="btn btn-sm btn-outline-secondary">
-           View
-          </button>
-          <button type="button" class="btn btn-sm btn-outline-secondary">
-           Edit
-          </button>
-         </div>
-         <small class="text-muted">9 mins</small>
-        </div>
-       </div>
-      </div>
-     </div>
-     <div class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-       <img class="img-fluid" src="/static/image/dl.jpg">
-
-       <div class="card-body">
-        <p class="card-text">
-         This is a wider card with supporting text below as a natural lead-in to
-         additional content. This content is a little bit longer.
-        </p>
-        <div class="d-flex justify-content-between align-items-center">
-         <div class="btn-group">
-          <button type="button" class="btn btn-sm btn-outline-secondary">
-           View
-          </button>
-          <button type="button" class="btn btn-sm btn-outline-secondary">
-           Edit
-          </button>
-         </div>
-         <small class="text-muted">9 mins</small>
-        </div>
-       </div>
-      </div>
-     </div>
-     <div class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-        <img class="img-fluid" src="/static/image/dl.jpg">
-
-       <div class="card-body">
-        <p class="card-text">
-         This is a wider card with supporting text below as a natural lead-in to
-         additional content. This content is a little bit longer.
-        </p>
-        <div class="d-flex justify-content-between align-items-center">
-         <div class="btn-group">
-          <button type="button" class="btn btn-sm btn-outline-secondary">
-           View
-          </button>
-          <button type="button" class="btn btn-sm btn-outline-secondary">
-           Edit
-          </button>
-         </div>
-         <small class="text-muted">9 mins</small>
-        </div>
-       </div>
-      </div>
-     </div>
-
-     <div class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-        <img class="img-fluid" src="/static/image/dl.jpg">
-
-       <div class="card-body">
-        <p class="card-text">
-         This is a wider card with supporting text below as a natural lead-in to
-         additional content. This content is a little bit longer.
-        </p>
-        <div class="d-flex justify-content-between align-items-center">
-         <div class="btn-group">
-          <button type="button" class="btn btn-sm btn-outline-secondary">
-           View
-          </button>
-          <button type="button" class="btn btn-sm btn-outline-secondary">
-           Edit
-          </button>
-         </div>
-         <small class="text-muted">9 mins</small>
-        </div>
-       </div>
-      </div>
-     </div>
-     <div class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-       
-       <img class="img-fluid" src="/static/image/dl.jpg">
-       <div class="card-body">
-        <p class="card-text">
-         This is a wider card with supporting text below as a natural lead-in to
-         additional content. This content is a little bit longer.
-        </p>
-        <div class="d-flex justify-content-between align-items-center">
-         <div class="btn-group">
-          <button type="button" class="btn btn-sm btn-outline-secondary">
-           View
-          </button>
-          <button type="button" class="btn btn-sm btn-outline-secondary">
-           Edit
-          </button>
-         </div>
-         <small class="text-muted">9 mins</small>
-        </div>
-       </div>
-      </div>
-     </div>
-     <div class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-        <img class="img-fluid" src="/static/image/dl.jpg">
-       <div class="card-body">
-        <p class="card-text">
-         This is a wider card with supporting text below as a natural lead-in to
-         additional content. This content is a little bit longer.
-        </p>
-        <div class="d-flex justify-content-between align-items-center">
-         <div class="btn-group">
-          <button type="button" class="btn btn-sm btn-outline-secondary">
-           View
-          </button>
-          <button type="button" class="btn btn-sm btn-outline-secondary">
-           Edit
-          </button>
-         </div>
-         <small class="text-muted">9 mins</small>
-        </div>
-       </div>
-      </div>
+     <!-- 遍历最热的视频 -->
+     <div class="col-md-4" v-for="o in heatsumarys" v-bind:key="o.id">
+       <the-video v-bind:heatsumary="o"></the-video>
      </div>
     </div>
    </div>
@@ -171,37 +34,29 @@ export default {
  components: { TheVideo },
  data: function () {
   return {
-   news: [],
+   heatsumarys: [],
   };
  },
  mounted() {
   let _this = this;
-  _this.listNew();
+  _this.heatVideo();
  },
  methods: {
   /**
    * 查询新上好课
    */
-  listNew() {
+  heatVideo() {
    let _this = this;
-
-   // 新上好课不经常变，又经常被访问，适合用缓存
-   // 判断是否有缓存
-   //let news = SessionStorage.get("news");
-   //  if (!Tool.isEmpty(news)) {
-   //   _this.news = news;
-   //   return;
-   //  }
-
    _this.$ajax
-    .get(process.env.VUE_APP_SERVER + "/business/web/course/list_new")
+    .post(process.env.VUE_APP_SERVER + "/business/web/sumary/heat",{
+      pageNo:1,
+      pageSize:6
+    })
     .then((response) => {
-     console.log("查询新上好课结果：", response);
+     console.log("查询当前最热的视频", response);
      let resp = response.data;
      if (resp.success) {
-      _this.news = resp.data;
-      // 保存到缓存
-      // SessionStorage.set("news", _this.news);
+      _this.heatsumarys = resp.data.records;
      }
     })
     .catch((response) => {

@@ -45,15 +45,8 @@
      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-     <input
-      class="form-control mr-sm-2"
-      type="search"
-      placeholder="搜索"
-      aria-label="Search"
-     />
-     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-      搜索
-     </button>
+      <input class="form-control mr-sm-2" type="search" placeholder="搜索" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
     </form>
     <button
      class="btn btn-outline-success my-2 my-sm-0"

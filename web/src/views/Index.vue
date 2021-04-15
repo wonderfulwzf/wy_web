@@ -18,7 +18,7 @@
     <div class="title1">当前最热</div>
     <div class="row">
      <div class="col-md-4" v-for="o in news" v-bind:key="o.id">
-      <TheCourse v-bind:course="o"></TheCourse>
+       <the-video v-bind:course="o"></the-video>
      </div>
 
      <div class="col-md-4">
@@ -165,10 +165,10 @@
 </template>
 
 <script>
-import TheCourse from "../components/TheCourse";
+import TheVideo from '../components/TheVideo.vue';
 export default {
  name: "index",
- components: { TheCourse },
+ components: { TheVideo },
  data: function () {
   return {
    news: [],

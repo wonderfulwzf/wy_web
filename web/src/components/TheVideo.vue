@@ -20,7 +20,7 @@
 
 <script>
   export default {
-    name: 'TheCourse',
+    name: 'TheVideo',
     props: {
       course: {}
     },

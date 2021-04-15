@@ -60,7 +60,7 @@
     <br />
     <div class="row">
      <div v-for="o in courses" v-bind:key="o.id" class="col-md-4">
-      <the-course v-bind:course="o"></the-course>
+      <the-video v-bind:course="o"></the-video>
      </div>
      <h3 v-show="courses.length === 0">课程还未上架</h3>
     </div>
@@ -70,11 +70,11 @@
 </template>
 
 <script>
-import TheCourse from "../components/TheCourse";
-import Pagination from "../components/Pagination";
+import TheVideo from "../components/TheVideo.vue";
+
 
 export default {
- components: { Pagination, TheCourse },
+ components: { TheVideo },
  name: "list",
  data: function () {
   return {
@@ -99,7 +99,7 @@ export default {
   listCourse(page) {
    let _this = this;
    _this.$ajax
-    .post(process.env.VUE_APP_SERVER + "/business/web/course/list", {
+    .post(process.env.VUE_APP_SERVER + "/business/summary/list", {
      pageNo: page,
      pageSize: _this.$refs.pagination.size,
      categoryId: _this.level2Id || _this.level1Id || "", // 优先取level2Id
@@ -122,7 +122,7 @@ export default {
   allCategory() {
    let _this = this;
    _this.$ajax
-    .post(process.env.VUE_APP_SERVER + "/business/web/category/all")
+    .get(process.env.VUE_APP_SERVER + "/business/category/all")
     .then((response) => {
      let resp = response.data;
      let categorys = resp.data;

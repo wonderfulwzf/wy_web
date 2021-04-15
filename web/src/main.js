@@ -3,10 +3,13 @@ import App from './App.vue'
 import router from './router'
 import axios from 'axios'
 import filter from './filter/filter'
+import ViewUI from 'view-design';
+import 'view-design/dist/styles/iview.css';
 
 Vue.config.productionTip = false
 Vue.prototype.$ajax = axios;
 
+Vue.use(ViewUI)
 
 //全局过滤器
 Object.keys(filter).forEach(key =>{

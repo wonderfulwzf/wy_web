@@ -18,8 +18,8 @@
     <div class="title1">当前最热</div>
     <div class="row">
      <!-- 遍历最热的视频 -->
-     <div class="col-md-4" v-for="o in heatsumarys" v-bind:key="o.id">
-       <the-video v-bind:heatsumary="o"></the-video>
+     <div class="col-md-4" v-for="o in heatsummarys" v-bind:key="o.id">
+       <the-video v-bind:summary="o"></the-video>
      </div>
     </div>
    </div>
@@ -34,7 +34,7 @@ export default {
  components: { TheVideo },
  data: function () {
   return {
-   heatsumarys: [],
+   heatsummarys: [],
   };
  },
  mounted() {
@@ -48,7 +48,7 @@ export default {
   heatVideo() {
    let _this = this;
    _this.$ajax
-    .post(process.env.VUE_APP_SERVER + "/business/web/sumary/heat",{
+    .post(process.env.VUE_APP_SERVER + "/business/web/summary/heat",{
       pageNo:1,
       pageSize:6
     })
@@ -56,7 +56,7 @@ export default {
      console.log("查询当前最热的视频", response);
      let resp = response.data;
      if (resp.success) {
-      _this.heatsumarys = resp.data.records;
+      _this.heatsummarys = resp.data.records;
      }
     })
     .catch((response) => {

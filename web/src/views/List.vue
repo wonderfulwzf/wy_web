@@ -52,17 +52,32 @@
   </div>
   <div class="album py-5 bg-light">
    <div class="container">
+    <!-- 视频内容 -->
     <div class="row">
-     <div class="col-md-12">
-      <pagination ref="pagination" v-bind:list="listCourse"></pagination>
+     <div v-for="o in summarys" v-bind:key="o.id" class="col-md-4">
+      <the-video v-bind:summary="o"></the-video>
      </div>
+     <h3 v-show="summarys.length === 0">赶紧叫老王上传视频资源！</h3>
     </div>
     <br />
     <div class="row">
-     <div v-for="o in courses" v-bind:key="o.id" class="col-md-4">
-      <the-video v-bind:course="o"></the-video>
+     <div class="col-md-12">
+      <Row>
+       <Col span="9"></Col>
+       <Col span="12"
+        ><Page
+         :current="pageNo"
+         :total="totalRecord"
+         :page-size="pageSize"
+         @on-change="handleCurrentChange"
+         @on-page-size-change="handleSizeChange"
+         show-sizer
+         show-total
+         :page-size-opts="pagesizelist"
+       /></Col>
+      </Row>
+      <Col span=""></Col>
      </div>
-     <h3 v-show="courses.length === 0">课程还未上架</h3>
     </div>
    </div>
   </div>
@@ -71,54 +86,62 @@
 
 <script>
 import TheVideo from "../components/TheVideo.vue";
-
-
 export default {
  components: { TheVideo },
  name: "list",
  data: function () {
   return {
-   courses: [],
+   summarys: [],
    level1: [],
    level2: [],
    categorys: [],
    level1Id: "",
    level2Id: "",
+   //分页查询参数
+   pageNo: 1,
+   totalRecord: 0,
+   pageSize: 6,
+   summary: {},
+   pagesizelist:[6,12,18,24]
   };
  },
  mounted() {
   let _this = this;
-   _this.$refs.pagination.size = 1;
-  _this.listCourse(1);
   _this.allCategory();
+  _this.listSummary(1);
  },
  methods: {
-  /**
-   * 查询课程列表
-   */
-  listCourse(page) {
+  //列表查询
+  listSummary(pageNo) {
    let _this = this;
    _this.$ajax
-    .post(process.env.VUE_APP_SERVER + "/business/summary/list", {
-     pageNo: page,
-     pageSize: _this.$refs.pagination.size,
+    .post(process.env.VUE_APP_SERVER + "/business/web/summary/list_by_category", {
+     pageNo: pageNo,
+     pageSize: _this.pageSize,
      categoryId: _this.level2Id || _this.level1Id || "", // 优先取level2Id
     })
     .then((response) => {
      let resp = response.data;
      if (resp.success) {
-      _this.courses = resp.data.records;
-      _this.$refs.pagination.render(page, resp.data.totalRecord);
+      _this.summarys = resp.data.records;
+      _this.totalRecord = resp.data.totalRecord;
      }
     })
     .catch((response) => {
      console.log("error：", response);
     });
   },
-
-  /**
-   * 所有分类查询
-   */
+  //页码改变
+  handleCurrentChange(page) {
+   this.listSummary(page);
+  },
+  //改变页长
+  handleSizeChange(size) {
+   let _this = this;
+   _this.pageSize = size;
+   _this.listSummary(_this.pageNo);
+  },
+  //查询所有分类
   allCategory() {
    let _this = this;
    _this.$ajax
@@ -190,7 +213,7 @@ export default {
    }
 
    // 重新加载课程列表
-   _this.listCourse(1);
+   _this.listSummary(_this.pageNo);
   },
 
   /**
@@ -213,7 +236,7 @@ export default {
    }
 
    // 重新加载课程列表
-   _this.listCourse(1);
+   _this.listSummary(_this.pageNo);
   },
  },
 };

@@ -38,9 +38,14 @@
       <ListItem>简介:{{ summary.describe }}</ListItem>
       <ListItem>
        <div style="height: 285px">
-        <Row v-if="videos.length>4">
+        <Row v-if="videos.length > 4">
          <!-- 遍历集数 -->
-         <Col span="6" v-for="(video, i) in videos" v-bind:key="i" style="margin-top: 10px" >
+         <Col
+          span="6"
+          v-for="(video, i) in videos"
+          v-bind:key="i"
+          style="margin-top: 10px"
+         >
           <div>
            <Button type="success" shape="circle" v-on:click="checkvideo(video)"
             ><Icon type="logo-yen" v-if="video.charge == 1" size="small" /><Icon
@@ -52,9 +57,14 @@
           </div>
          </Col>
         </Row>
-        <Row  type="flex" justify="space-around" class="code-row-bg" v-else>
+        <Row type="flex" justify="space-around" class="code-row-bg" v-else>
          <!-- 遍历集数 -->
-         <Col span="6" v-for="(video, i) in videos" v-bind:key="i" style="margin-top: 10px" >
+         <Col
+          span="6"
+          v-for="(video, i) in videos"
+          v-bind:key="i"
+          style="margin-top: 10px"
+         >
           <div>
            <Button type="success" shape="circle" v-on:click="checkvideo(video)"
             ><Icon type="logo-yen" v-if="video.charge == 1" size="small" /><Icon
@@ -162,8 +172,15 @@ export default {
   },
   checkvideo(video) {
    let _this = this;
-   _this.vod = video.vod;
-   _this.getAllMessage();
+   if (video.charge == 0) {
+    _this.vod = video.vod;
+    _this.getAllMessage();
+   } else {
+    _this.$Notice.error({
+     title: "错误",
+     desc: "收费视频，请登录观看！",
+    });
+   }
   },
  },
 };

@@ -2,14 +2,17 @@
  <div class="album py-5 bg-light">
   <div class="container">
    <Row>
-    <Col span="16"
-     >
+    <Col span="16">
      <!-- <img src="//puui.qpic.cn/vcover_vt_pic/0/mzc002007edivq01617092726239/350" alt="视频封面" style="width: 700px; height: 389px"/> -->
      <div>
-         <player ref="detailplayer" :player-id="'detailplayer'" style="width: 700px; height: 389px"></player>
+      <player
+       ref="detailplayer"
+       :player-id="'detailplayer'"
+       style="width: 700px; height: 389px"
+      ></player>
      </div>
-     
-     <List item-layout="vertical"  style="margin-top:30px">
+
+     <List item-layout="vertical" style="margin-top: 30px">
       <ListItem v-for="item in comment" :key="item.title">
        <ListItemMeta
         :avatar="item.avatar"
@@ -34,14 +37,36 @@
      <List border>
       <ListItem>简介:{{ summary.describe }}</ListItem>
       <ListItem>
-      <div style="height: 285px">
-       <Row type="flex" justify="space-between" class="code-row-bg">
-        <!-- 遍历集数 -->
-        <Col span="6" v-for="(video,i) in videos" v-bind:key="i" style="margin-top:20px;">
-         <Button type="success" v-on:click="checkvideo(video.vod)">第{{i+1}}集</Button>
-        </Col>
-       </Row>
-      </div>
+       <div style="height: 285px">
+        <Row v-if="videos.length>4">
+         <!-- 遍历集数 -->
+         <Col span="6" v-for="(video, i) in videos" v-bind:key="i" style="margin-top: 10px" >
+          <div>
+           <Button type="success" shape="circle" v-on:click="checkvideo(video)"
+            ><Icon type="logo-yen" v-if="video.charge == 1" size="small" /><Icon
+             type="ios-play"
+             v-else
+             size="small"
+            />第{{ i + 1 }}集</Button
+           >
+          </div>
+         </Col>
+        </Row>
+        <Row  type="flex" justify="space-around" class="code-row-bg" v-else>
+         <!-- 遍历集数 -->
+         <Col span="6" v-for="(video, i) in videos" v-bind:key="i" style="margin-top: 10px" >
+          <div>
+           <Button type="success" shape="circle" v-on:click="checkvideo(video)"
+            ><Icon type="logo-yen" v-if="video.charge == 1" size="small" /><Icon
+             type="ios-play"
+             v-else
+             size="small"
+            />第{{ i + 1 }}集</Button
+           >
+          </div>
+         </Col>
+        </Row>
+       </div>
       </ListItem>
       <ListItem>
        <Card style="width: 320px">
@@ -57,17 +82,17 @@
      <p>主演信息{{ actor }}</p>
      <p>视频信息{{ videos }}</p>
      864 x 486 -->
-     </Col>
+    </Col>
    </Row>
   </div>
  </div>
 </template>
 <script>
-import Player from '../components/Player.vue';
+import Player from "../components/Player.vue";
 
 export default {
-components: {Player  },
-name: "wy_detail",
+ components: { Player },
+ name: "wy_detail",
  data() {
   return {
    summaryId: "",
@@ -77,34 +102,28 @@ name: "wy_detail",
    comment: [
     {
      title: "会员00****00",
-     description:
-      "萌新",
+     description: "萌新",
      avatar:
       "https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar",
-     content:
-      "我第一次看感觉真的很nice！",
+     content: "我第一次看感觉真的很nice！",
     },
     {
      title: "会员00****02",
-     description:
-      "小影迷",
+     description: "小影迷",
      avatar:
       "https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar",
-     content:
-      "百看不腻，爱了！",
+     content: "百看不腻，爱了！",
     },
     {
      title: "会员00****03",
-     description:
-      "忠实影迷",
+     description: "忠实影迷",
      avatar:
       "https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar",
-     content:
-      "我都看了N遍了,没事就喜欢重温经典！",
+     content: "我都看了N遍了,没事就喜欢重温经典！",
     },
    ],
-   playname:"",
-   vod:"",
+   playname: "",
+   vod: "",
   };
  },
  mounted() {
@@ -130,22 +149,22 @@ name: "wy_detail",
       _this.actor = resp.data.actorDto;
       _this.videos = resp.data.videoDtos;
       console.log(_this.summary);
-      if(_this.vod==""){
-        _this.vod = _this.videos[0].vod;
+      if (_this.vod == "") {
+       _this.vod = _this.videos[0].vod;
       }
-       _this.playname = "detailplayer";
-      _this.$refs[_this.playname].playVod(_this.vod);  
+      _this.playname = "detailplayer";
+      _this.$refs[_this.playname].playVod(_this.vod);
      }
     })
     .catch((response) => {
      console.log("error：", response);
     });
   },
-  checkvideo(vod){
-      let _this = this;
-      _this.vod = vod;
-      _this.getAllMessage();
-  }
+  checkvideo(video) {
+   let _this = this;
+   _this.vod = video.vod;
+   _this.getAllMessage();
+  },
  },
 };
 </script>

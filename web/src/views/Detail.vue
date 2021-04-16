@@ -35,10 +35,10 @@
       <ListItem>简介:{{ summary.describe }}</ListItem>
       <ListItem>
       <div style="height: 285px">
-       <Row :gutter="16" >
+       <Row type="flex" justify="space-between" class="code-row-bg">
         <!-- 遍历集数 -->
-        <Col span="6" v-for="(video,i) in videos" v-bind:key="i" style="margin-top:20px">
-         <div><Button type="success" v-on:click="checkvideo(video.vod)">第{{i+1}}集</Button></div>
+        <Col span="6" v-for="(video,i) in videos" v-bind:key="i" style="margin-top:20px;">
+         <Button type="success" v-on:click="checkvideo(video.vod)">第{{i+1}}集</Button>
         </Col>
        </Row>
       </div>
